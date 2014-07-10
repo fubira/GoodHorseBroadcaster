@@ -1,0 +1,8 @@
+name: GoodHorseBroadcaster
+author: fubira
+main: net.ironingot.goodhorse.GoodHorseBroadcaster
+version: 0.1
+commands:
+  goodhorse:
+    usage: ^^
+    description: Broadcast message when spawning great horse!
