@@ -3,7 +3,7 @@ GoodHorseBroadcaster
 
 This plugin broadcast to the player that 'good horse' was born into the world!
 
-[SuperHorseSpawned](http://i.imgur.com/J29tVea)
+[SuperHorseSpawned](http://i.imgur.com/J29tVea.jpg)
 
 Compilation
 -----------
