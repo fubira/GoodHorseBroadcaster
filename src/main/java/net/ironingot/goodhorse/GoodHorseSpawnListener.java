@@ -35,9 +35,9 @@ public class GoodHorseSpawnListener implements Listener {
             double hp = horse.getMaxHealth();
             double point = speed * 5 + jump;
 
-            if (point > 2.44 ) {
+            if (point > 2.44) {
                 plugin.getServer().broadcastMessage(ChatColor.RED + "Special horse was born in " + world.getName() + "!!!");
-            } else if (point > 2.38 ) {
+            } else if (point > 2.38) {
                 plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Super horse spawned in " + world.getName() + "!!");
             } else if (point > 2.32) {
                 plugin.getServer().broadcastMessage(ChatColor.AQUA + "Good horse spawned in " + world.getName() + "!");
