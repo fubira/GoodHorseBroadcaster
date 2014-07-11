@@ -10,6 +10,7 @@ import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHorse;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
@@ -21,6 +22,7 @@ public class GoodHorseSpawnListener implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
+    @EventHandler(priority = EventPriority.HIGH)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         Location location = event.getEntity().getLocation();
         World world = event.getEntity().getWorld();
@@ -31,15 +33,16 @@ public class GoodHorseSpawnListener implements Listener {
             double speed = getSpeed(horse);
             double jump = horse.getJumpStrength();
             double hp = horse.getMaxHealth();
+            double point = speed * 5 + jump;
 
-            if (speed > 0.320 || jump > 0.980 || (speed > 0.310 && jump > 0.850 )) {
+            if (point > 2.44 ) {
                 plugin.getServer().broadcastMessage(ChatColor.RED + "Special horse was born in " + world.getName() + "!!!");
-            } else if (speed > 0.320 || jump > 0.950 || (speed > 0.310 && jump > 0.850 )) {
+            } else if (point > 2.38 ) {
                 plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Super horse spawned in " + world.getName() + "!!");
-            } else if (speed > 0.310 || jump > 0.920 || (speed > 0.305 && jump > 0.820 )) {
+            } else if (point > 2.32) {
                 plugin.getServer().broadcastMessage(ChatColor.AQUA + "Good horse spawned in " + world.getName() + "!");
             }
-                    }
+        }
     }
 
     public double getSpeed(Horse horse) {
