@@ -17,9 +17,9 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 public class GoodHorseSpawnListener implements Listener {
     public GoodHorseBroadcaster plugin;
 
-    public static final String messageGreatest = ChatColor.RED + "Special horse was born in " + world.getName() + "!!!";
-    public static final String messageGreat = ChatColor.YELLOW + "Super horse spawned in " + world.getName() + "!!";
-    public static final String messageGood = ChatColor.AQUA + "Good horse spawned in " + world.getName() + "!";
+    public static final String messageGreatest = ChatColor.RED + "Special horse was born in [WORLD]!!!";
+    public static final String messageGreat = ChatColor.YELLOW + "Super horse spawned in [WORLD]!!";
+    public static final String messageGood = ChatColor.AQUA + "Good horse spawned in [WORLD]!";
 
     public static final double basePointGreatest = 2.44f;
     public static final double basePointGreat = 2.38f;
@@ -37,14 +37,21 @@ public class GoodHorseSpawnListener implements Listener {
 
         if (event.getEntityType() == EntityType.HORSE) {
             double point = calcHorsePoint((Horse)event.getEntity());
+            String message = "";
 
             if (point > basePointGreatest) {
-                plugin.getServer().broadcastMessage(messageGreatest);
+                message = messageGreatest;
             } else if (point > basePointGreat) {
-                plugin.getServer().broadcastMessage(messageGreat);
+                message = messageGreat;
             } else if (point > basePointGood) {
-                plugin.getServer().broadcastMessage(messageGood);
+                message = messageGood;
             }
+
+            // replace tag to world
+            message.replace("[WORLD]", world.getName());
+
+            // send broadcast message
+            plugin.getServer().broadcastMessage(message);
         }
     }
 
