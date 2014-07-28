@@ -17,6 +17,14 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 public class GoodHorseSpawnListener implements Listener {
     public GoodHorseBroadcaster plugin;
 
+    public static final String messageGreatest = ChatColor.RED + "Special horse was born in " + world.getName() + "!!!";
+    public static final String messageGreat = ChatColor.YELLOW + "Super horse spawned in " + world.getName() + "!!";
+    public static final String messageGood = ChatColor.AQUA + "Good horse spawned in " + world.getName() + "!";
+
+    public static final double basePointGreatest = 2.44f;
+    public static final double basePointGreat = 2.38f;
+    public static final double basePointGood = 2.32f;
+
     public GoodHorseSpawnListener(GoodHorseBroadcaster plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -28,19 +36,14 @@ public class GoodHorseSpawnListener implements Listener {
         World world = event.getEntity().getWorld();
 
         if (event.getEntityType() == EntityType.HORSE) {
-            Horse horse = (Horse) event.getEntity();
+            double point = calcHorsePoint((Horse)event.getEntity());
 
-            double speed = getSpeed(horse);
-            double jump = horse.getJumpStrength();
-            double hp = horse.getMaxHealth();
-            double point = speed * 5 + jump;
-
-            if (point > 2.44) {
-                plugin.getServer().broadcastMessage(ChatColor.RED + "Special horse was born in " + world.getName() + "!!!");
-            } else if (point > 2.38) {
-                plugin.getServer().broadcastMessage(ChatColor.YELLOW + "Super horse spawned in " + world.getName() + "!!");
-            } else if (point > 2.32) {
-                plugin.getServer().broadcastMessage(ChatColor.AQUA + "Good horse spawned in " + world.getName() + "!");
+            if (point > basePointGreatest) {
+                plugin.getServer().broadcastMessage(messageGreatest);
+            } else if (point > basePointGreat) {
+                plugin.getServer().broadcastMessage(messageGreat);
+            } else if (point > basePointGood) {
+                plugin.getServer().broadcastMessage(messageGood);
             }
         }
     }
@@ -61,4 +64,12 @@ public class GoodHorseSpawnListener implements Listener {
         }
         return speed;
     }       
+
+    public double calcHorsePoint(Horse horse) {
+        double speed = getSpeed(horse);
+        double jump = horse.getJumpStrength();
+        double hp = horse.getMaxHealth();
+
+        return speed * 5 + jump;
+    }
 }
