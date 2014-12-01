@@ -1,12 +1,12 @@
 package net.ironingot.goodhorse;
 
-import net.minecraft.server.v1_7_R1.NBTTagCompound;
-import net.minecraft.server.v1_7_R1.NBTTagList;
+import net.minecraft.server.v1_8_R1.NBTTagCompound;
+import net.minecraft.server.v1_8_R1.NBTTagList;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_7_R1.entity.CraftHorse;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftHorse;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
